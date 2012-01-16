@@ -23,11 +23,12 @@
 echo
 echo "Checking availability of required packages..."
 
-REQUIREDPACKAGES=( git-core debootstrap asciidoc docbook-xsl curl build-essential debhelper autoconf automake autotools-dev curl subversion unzip squashfs-tools cdbs po4a python-utidylib germinate lzma) # libterm-readline-gnu-perl
+#vikjon0 add live-build
+REQUIREDPACKAGES=( git-core debootstrap asciidoc docbook-xsl curl build-essential debhelper autoconf automake autotools-dev curl subversion unzip squashfs-tools cdbs po4a python-utidylib germinate lzma live-build) # libterm-readline-gnu-perl
 NOTINSTALLED=()
 
 for k in "${REQUIREDPACKAGES[@]}" ; do
-	if [ "$( dpkg -l  | grep "ii" | grep "$k" )" = "" ] ; then
+	if [ "$( dpkg -l  | grep "ii" | grep " $k " )" = "" ] ; then #vikjon0 Insert space or substring will be found
 		NOTINSTALLED+=($k)
 	fi
 done
