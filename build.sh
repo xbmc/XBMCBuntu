@@ -40,7 +40,7 @@ if [ ${#NOTINSTALLED[@]} -gt 0 ]; then
 	done
         read -p "Would you like to install them automatically? (y/n) " RESP
         if [ "$RESP" = "y" ]; then
-          sudo apt-get -y install git-core debootstrap asciidoc docbook-xsl curl build-essential debhelper autoconf automake autotools-dev curl subversion unzip squashfs-tools cdbs po4a python-utidylib germinate lzma
+          sudo apt-get -y install git-core debootstrap asciidoc docbook-xsl curl build-essential debhelper autoconf automake autotools-dev curl subversion unzip squashfs-tools cdbs po4a python-utidylib germinate lzma || { echo 'apt not installed, exiting...' ; exit 1; }
         else
           echo "exiting."
           exit 1
