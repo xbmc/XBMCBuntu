@@ -34,11 +34,12 @@ done
 
 if [ ${#NOTINSTALLED[@]} -gt 0 ]; then
 	echo
-	echo "FATAL: the following packages are missing, exiting."
+	echo "FATAL: the following packages are missing"
 	for k in "${NOTINSTALLED[@]}"; do
 		echo "  $k";
 	done
-	exit 1
+	echo "trying to install required packages..."
+	sudo apt-get -y install git-core debootstrap asciidoc docbook-xsl curl build-essential debhelper autoconf automake autotools-dev curl subversion unzip squashfs-tools cdbs po4a python-utidylib germinate lzma || { echo 'apt not installed, exiting...' ; exit 1; }
 fi
 
 #
