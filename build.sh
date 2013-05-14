@@ -40,7 +40,7 @@ if [ ${#NOTINSTALLED[@]} -gt 0 ]; then
 	done
         read -p "Would you like to install them automatically? (y/n) " RESP
         if [ "$RESP" = "y" ]; then
-          inst=$(echo "$k" | tr '\n' ' ')
+          inst=$(echo "$k" | sed 's/$/\\/')
           sudo apt-get -y install $inst || { echo 'apt not installed or no network connection, exiting...' ; exit 1; }
         else
           echo "exiting."
