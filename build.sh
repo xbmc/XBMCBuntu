@@ -37,11 +37,18 @@ done
 
 if [ ${#NOTINSTALLED[@]} -gt 0 ]; then
 	echo
-	echo "FATAL: the following packages are missing, exiting."
+	echo "FATAL: the following packages are missing"
 	for k in "${NOTINSTALLED[@]}"; do
 		echo "  $k";
 	done
-	exit 1
+        read -p "Would you like to install them automatically? (y/n) " RESP
+        if [ "$RESP" = "y" ]; then
+          inst=$(echo "$k" | sed 's/$/\\/')
+          sudo apt-get -y install $inst || { echo 'apt not installed or no network connection, exiting...' ; exit 1; }
+        else
+          echo "exiting."
+          exit 1
+        fi
 fi
 
 #
